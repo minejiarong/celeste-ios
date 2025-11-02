@@ -89,7 +89,7 @@ index 8274eaff9..04887a0d0 100644
 +            GCKeyboard *keyboard = [GCKeyboard coalescedKeyboard];
 +            if (keyboard) {
 +                s_keyboard = keyboard;
-+                
++
 +                // Setup keyboard input handler
 +                keyboard.keyboardInput.keyChangedHandler = ^(GCKeyboardInput *keyboardInput, GCControllerButtonInput *button, GCKeyCode keyCode, BOOL pressed) {
 +                    SDL_Scancode scancode = GCKeyCodeToSDLScancode(keyCode);
@@ -106,19 +106,19 @@ index 8274eaff9..04887a0d0 100644
 +                };
 +            }
 +        }];
-+        
++
 +        [[NSNotificationCenter defaultCenter] addObserverForName:GCKeyboardDidDisconnectNotification
 +                                                          object:nil
 +                                                           queue:[NSOperationQueue mainQueue]
 +                                                      usingBlock:^(NSNotification *note) {
 +            s_keyboard = nil;
 +        }];
-+        
++
 +        // Check if keyboard is already connected
 +        GCKeyboard *keyboard = [GCKeyboard coalescedKeyboard];
 +        if (keyboard) {
 +            s_keyboard = keyboard;
-+            
++
 +            keyboard.keyboardInput.keyChangedHandler = ^(GCKeyboardInput *keyboardInput, GCControllerButtonInput *button, GCKeyCode keyCode, BOOL pressed) {
 +                SDL_Scancode scancode = GCKeyCodeToSDLScancode(keyCode);
 +                if (scancode != SDL_SCANCODE_UNKNOWN) {
@@ -138,7 +138,7 @@ index 8274eaff9..04887a0d0 100644
 +
  @implementation SDL_uikitmetalview
  
-@@ -54,6 +110,10 @@ - (instancetype)initWithFrame:(CGRect)frame
+@@ -54,6 +160,10 @@ - (instancetype)initWithFrame:(CGRect)frame
          [self updateDrawableSize];
      }
  
