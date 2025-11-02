@@ -215,11 +215,13 @@ function get_fmod() {
 }
 
 if ! [ -f "$script_dir/celestemeow/libfmod.a" ] || ! [ -f "$script_dir/celestemeow/libfmodstudio.a" ]; then
-	info "fmod not found, prompting to download it"
-	get_fmod
+    info "using pre-copied FMOD libraries from project root"
+    cp "$script_dir/libfmod_iphoneos.a" "$script_dir/celestemeow/libfmod.a"
+    cp "$script_dir/libfmodstudio_iphoneos.a" "$script_dir/celestemeow/libfmodstudio.a"
 else
-	info "fmod found"
+    info "fmod found"
 fi
+
 
 info "checking for required tools..."
 
