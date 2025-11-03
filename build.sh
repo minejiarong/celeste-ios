@@ -352,12 +352,6 @@ nativelib_build_err() {
 
 if ! ./updatelibs.sh; then nativelib_build_err; fi
 
-# Apply keyboard input patch (always enabled for physical keyboard support)
-info "applying keyboard input patch"
-cd "$script_dir/fnalibs-ios-builder-celeste/SDL2" || cd_fail
-apply_patch "$script_dir/patches/SDL-keyboard.patch"
-cd "$script_dir/fnalibs-ios-builder-celeste" || cd_fail
-
 while true; do
 	read -p "Do you want to enable a virtual game controller if no other input devices are detected? iOS 15+ only! (y/n) " yn
 	case $yn in
