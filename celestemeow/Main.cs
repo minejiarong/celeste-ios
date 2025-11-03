@@ -58,7 +58,7 @@ namespace celestemeow
             MethodInfo method = typeof(Celeste.Celeste).GetMethod("Main", BindingFlags.NonPublic | BindingFlags.Static);
             method.Invoke(null, new object[] { args });
         }
-    }
+
 
 #if __IOS__ || __TVOS__
         // Setup a non-invasive keyboard bridge using GameController (iOS 14+)
@@ -184,5 +184,6 @@ namespace celestemeow
 
             return SDL.SDL_Scancode.SDL_SCANCODE_UNKNOWN;
         }
-#endif
+	#endif
+	}
 }
