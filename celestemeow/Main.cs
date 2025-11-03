@@ -123,50 +123,18 @@ namespace celestemeow
             if (code == (nint)GCKeyCode.RightShift)         return SDL.SDL_Scancode.SDL_SCANCODE_RSHIFT;
             if (code == (nint)GCKeyCode.LeftControl)        return SDL.SDL_Scancode.SDL_SCANCODE_LCTRL;
             if (code == (nint)GCKeyCode.RightControl)       return SDL.SDL_Scancode.SDL_SCANCODE_RCTRL;
-            if (code == (nint)GCKeyCode.LeftOption)         return SDL.SDL_Scancode.SDL_SCANCODE_LALT;
-            if (code == (nint)GCKeyCode.RightOption)        return SDL.SDL_Scancode.SDL_SCANCODE_RALT;
+			if (code == (nint)GCKeyCode.LeftAlt)            return SDL.SDL_Scancode.SDL_SCANCODE_LALT;
+			if (code == (nint)GCKeyCode.RightAlt)           return SDL.SDL_Scancode.SDL_SCANCODE_RALT;
             if (code == (nint)GCKeyCode.LeftCommand)        return SDL.SDL_Scancode.SDL_SCANCODE_LGUI;
             if (code == (nint)GCKeyCode.RightCommand)       return SDL.SDL_Scancode.SDL_SCANCODE_RGUI;
 
-            // letters
-            if (code == (nint)GCKeyCode.A) return SDL.SDL_Scancode.SDL_SCANCODE_A;
-            if (code == (nint)GCKeyCode.B) return SDL.SDL_Scancode.SDL_SCANCODE_B;
-            if (code == (nint)GCKeyCode.C) return SDL.SDL_Scancode.SDL_SCANCODE_C;
-            if (code == (nint)GCKeyCode.D) return SDL.SDL_Scancode.SDL_SCANCODE_D;
-            if (code == (nint)GCKeyCode.E) return SDL.SDL_Scancode.SDL_SCANCODE_E;
-            if (code == (nint)GCKeyCode.F) return SDL.SDL_Scancode.SDL_SCANCODE_F;
-            if (code == (nint)GCKeyCode.G) return SDL.SDL_Scancode.SDL_SCANCODE_G;
-            if (code == (nint)GCKeyCode.H) return SDL.SDL_Scancode.SDL_SCANCODE_H;
-            if (code == (nint)GCKeyCode.I) return SDL.SDL_Scancode.SDL_SCANCODE_I;
-            if (code == (nint)GCKeyCode.J) return SDL.SDL_Scancode.SDL_SCANCODE_J;
-            if (code == (nint)GCKeyCode.K) return SDL.SDL_Scancode.SDL_SCANCODE_K;
-            if (code == (nint)GCKeyCode.L) return SDL.SDL_Scancode.SDL_SCANCODE_L;
-            if (code == (nint)GCKeyCode.M) return SDL.SDL_Scancode.SDL_SCANCODE_M;
-            if (code == (nint)GCKeyCode.N) return SDL.SDL_Scancode.SDL_SCANCODE_N;
-            if (code == (nint)GCKeyCode.O) return SDL.SDL_Scancode.SDL_SCANCODE_O;
-            if (code == (nint)GCKeyCode.P) return SDL.SDL_Scancode.SDL_SCANCODE_P;
-            if (code == (nint)GCKeyCode.Q) return SDL.SDL_Scancode.SDL_SCANCODE_Q;
-            if (code == (nint)GCKeyCode.R) return SDL.SDL_Scancode.SDL_SCANCODE_R;
-            if (code == (nint)GCKeyCode.S) return SDL.SDL_Scancode.SDL_SCANCODE_S;
-            if (code == (nint)GCKeyCode.T) return SDL.SDL_Scancode.SDL_SCANCODE_T;
-            if (code == (nint)GCKeyCode.U) return SDL.SDL_Scancode.SDL_SCANCODE_U;
-            if (code == (nint)GCKeyCode.V) return SDL.SDL_Scancode.SDL_SCANCODE_V;
-            if (code == (nint)GCKeyCode.W) return SDL.SDL_Scancode.SDL_SCANCODE_W;
-            if (code == (nint)GCKeyCode.X) return SDL.SDL_Scancode.SDL_SCANCODE_X;
-            if (code == (nint)GCKeyCode.Y) return SDL.SDL_Scancode.SDL_SCANCODE_Y;
-            if (code == (nint)GCKeyCode.Z) return SDL.SDL_Scancode.SDL_SCANCODE_Z;
+			// letters (HID usage 0x04-0x1D => A-Z)
+			if (code >= (nint)0x04 && code <= (nint)0x1D)
+				return (SDL.SDL_Scancode)((int)SDL.SDL_Scancode.SDL_SCANCODE_A + (int)(code - (nint)0x04));
 
-            // numbers (bindings may expose as _0.._9)
-            if (code == (nint)GCKeyCode._0) return SDL.SDL_Scancode.SDL_SCANCODE_0;
-            if (code == (nint)GCKeyCode._1) return SDL.SDL_Scancode.SDL_SCANCODE_1;
-            if (code == (nint)GCKeyCode._2) return SDL.SDL_Scancode.SDL_SCANCODE_2;
-            if (code == (nint)GCKeyCode._3) return SDL.SDL_Scancode.SDL_SCANCODE_3;
-            if (code == (nint)GCKeyCode._4) return SDL.SDL_Scancode.SDL_SCANCODE_4;
-            if (code == (nint)GCKeyCode._5) return SDL.SDL_Scancode.SDL_SCANCODE_5;
-            if (code == (nint)GCKeyCode._6) return SDL.SDL_Scancode.SDL_SCANCODE_6;
-            if (code == (nint)GCKeyCode._7) return SDL.SDL_Scancode.SDL_SCANCODE_7;
-            if (code == (nint)GCKeyCode._8) return SDL.SDL_Scancode.SDL_SCANCODE_8;
-            if (code == (nint)GCKeyCode._9) return SDL.SDL_Scancode.SDL_SCANCODE_9;
+			// number row (HID usage 0x1E-0x27 => 1..0)
+			if (code >= (nint)0x1E && code <= (nint)0x27)
+				return (SDL.SDL_Scancode)((int)SDL.SDL_Scancode.SDL_SCANCODE_1 + (int)(code - (nint)0x1E));
 
             // function keys
             if (code == (nint)GCKeyCode.F1)  return SDL.SDL_Scancode.SDL_SCANCODE_F1;
