@@ -42,69 +42,80 @@
 static GCKeyboard *s_keyboard = nil;
 
 static SDL_Scancode GCKeyCodeToSDLScancode(GCKeyCode keyCode) {
-    // Map GCKeyCode to SDL_Scancode using runtime comparisons
-    if (keyCode == GCKeyCodeSpace) return SDL_SCANCODE_SPACE;
-    if (keyCode == GCKeyCodeLeftArrow) return SDL_SCANCODE_LEFT;
-    if (keyCode == GCKeyCodeRightArrow) return SDL_SCANCODE_RIGHT;
-    if (keyCode == GCKeyCodeUpArrow) return SDL_SCANCODE_UP;
-    if (keyCode == GCKeyCodeDownArrow) return SDL_SCANCODE_DOWN;
-    if (keyCode == GCKeyCodeEscape) return SDL_SCANCODE_ESCAPE;
-    if (keyCode == GCKeyCodeEnter) return SDL_SCANCODE_RETURN;
-    if (keyCode == GCKeyCodeTab) return SDL_SCANCODE_TAB;
-    if (keyCode == GCKeyCodeLeftShift) return SDL_SCANCODE_LSHIFT;
-    if (keyCode == GCKeyCodeRightShift) return SDL_SCANCODE_RSHIFT;
-    if (keyCode == GCKeyCodeLeftControl) return SDL_SCANCODE_LCTRL;
-    if (keyCode == GCKeyCodeRightControl) return SDL_SCANCODE_RCTRL;
-    if (keyCode == GCKeyCodeLeftAlt) return SDL_SCANCODE_LALT;
-    if (keyCode == GCKeyCodeRightAlt) return SDL_SCANCODE_RALT;
-    if (keyCode == GCKeyCodeW) return SDL_SCANCODE_W;
-    if (keyCode == GCKeyCodeA) return SDL_SCANCODE_A;
-    if (keyCode == GCKeyCodeS) return SDL_SCANCODE_S;
-    if (keyCode == GCKeyCodeD) return SDL_SCANCODE_D;
-    if (keyCode == GCKeyCodeJ) return SDL_SCANCODE_J;
-    if (keyCode == GCKeyCodeK) return SDL_SCANCODE_K;
-    if (keyCode == GCKeyCodeZ) return SDL_SCANCODE_Z;
-    if (keyCode == GCKeyCodeX) return SDL_SCANCODE_X;
-    if (keyCode == GCKeyCodeC) return SDL_SCANCODE_C;
-    if (keyCode == GCKeyCodeV) return SDL_SCANCODE_V;
-    if (keyCode == GCKeyCodeB) return SDL_SCANCODE_B;
-    if (keyCode == GCKeyCodeN) return SDL_SCANCODE_N;
-    if (keyCode == GCKeyCodeM) return SDL_SCANCODE_M;
-    if (keyCode == GCKeyCodeQ) return SDL_SCANCODE_Q;
-    if (keyCode == GCKeyCodeE) return SDL_SCANCODE_E;
-    if (keyCode == GCKeyCodeR) return SDL_SCANCODE_R;
-    if (keyCode == GCKeyCodeF) return SDL_SCANCODE_F;
-    if (keyCode == GCKeyCodeT) return SDL_SCANCODE_T;
-    if (keyCode == GCKeyCodeG) return SDL_SCANCODE_G;
-    if (keyCode == GCKeyCodeY) return SDL_SCANCODE_Y;
-    if (keyCode == GCKeyCodeH) return SDL_SCANCODE_H;
-    if (keyCode == GCKeyCodeU) return SDL_SCANCODE_U;
-    if (keyCode == GCKeyCodeI) return SDL_SCANCODE_I;
-    if (keyCode == GCKeyCodeO) return SDL_SCANCODE_O;
-    if (keyCode == GCKeyCodeP) return SDL_SCANCODE_P;
-    if (keyCode == GCKeyCodeL) return SDL_SCANCODE_L;
-    if (keyCode == GCKeyCode0) return SDL_SCANCODE_0;
-    if (keyCode == GCKeyCode1) return SDL_SCANCODE_1;
-    if (keyCode == GCKeyCode2) return SDL_SCANCODE_2;
-    if (keyCode == GCKeyCode3) return SDL_SCANCODE_3;
-    if (keyCode == GCKeyCode4) return SDL_SCANCODE_4;
-    if (keyCode == GCKeyCode5) return SDL_SCANCODE_5;
-    if (keyCode == GCKeyCode6) return SDL_SCANCODE_6;
-    if (keyCode == GCKeyCode7) return SDL_SCANCODE_7;
-    if (keyCode == GCKeyCode8) return SDL_SCANCODE_8;
-    if (keyCode == GCKeyCode9) return SDL_SCANCODE_9;
-    if (keyCode == GCKeyCodeF1) return SDL_SCANCODE_F1;
-    if (keyCode == GCKeyCodeF2) return SDL_SCANCODE_F2;
-    if (keyCode == GCKeyCodeF3) return SDL_SCANCODE_F3;
-    if (keyCode == GCKeyCodeF4) return SDL_SCANCODE_F4;
-    if (keyCode == GCKeyCodeF5) return SDL_SCANCODE_F5;
-    if (keyCode == GCKeyCodeF6) return SDL_SCANCODE_F6;
-    if (keyCode == GCKeyCodeF7) return SDL_SCANCODE_F7;
-    if (keyCode == GCKeyCodeF8) return SDL_SCANCODE_F8;
-    if (keyCode == GCKeyCodeF9) return SDL_SCANCODE_F9;
-    if (keyCode == GCKeyCodeF10) return SDL_SCANCODE_F10;
-    if (keyCode == GCKeyCodeF11) return SDL_SCANCODE_F11;
-    if (keyCode == GCKeyCodeF12) return SDL_SCANCODE_F12;
+    // iOS 14.0+ GCKeyCode constants; use runtime comparisons
+    if (@available(iOS 14.0, *)) {
+        if (keyCode == GCKeyCodeSpacebar)           return SDL_SCANCODE_SPACE;
+        if (keyCode == GCKeyCodeLeftArrow)          return SDL_SCANCODE_LEFT;
+        if (keyCode == GCKeyCodeRightArrow)         return SDL_SCANCODE_RIGHT;
+        if (keyCode == GCKeyCodeUpArrow)            return SDL_SCANCODE_UP;
+        if (keyCode == GCKeyCodeDownArrow)          return SDL_SCANCODE_DOWN;
+        if (keyCode == GCKeyCodeEscape)             return SDL_SCANCODE_ESCAPE;
+        if (keyCode == GCKeyCodeReturnOrEnter)      return SDL_SCANCODE_RETURN;
+        if (keyCode == GCKeyCodeTab)                return SDL_SCANCODE_TAB;
+
+        if (keyCode == GCKeyCodeLeftShift)          return SDL_SCANCODE_LSHIFT;
+        if (keyCode == GCKeyCodeRightShift)         return SDL_SCANCODE_RSHIFT;
+        if (keyCode == GCKeyCodeLeftControl)        return SDL_SCANCODE_LCTRL;
+        if (keyCode == GCKeyCodeRightControl)       return SDL_SCANCODE_RCTRL;
+        if (keyCode == GCKeyCodeLeftOption)         return SDL_SCANCODE_LALT;
+        if (keyCode == GCKeyCodeRightOption)        return SDL_SCANCODE_RALT;
+        if (keyCode == GCKeyCodeLeftCommand)        return SDL_SCANCODE_LGUI;
+        if (keyCode == GCKeyCodeRightCommand)       return SDL_SCANCODE_RGUI;
+
+        // letters
+        if (keyCode == GCKeyCodeA) return SDL_SCANCODE_A;
+        if (keyCode == GCKeyCodeB) return SDL_SCANCODE_B;
+        if (keyCode == GCKeyCodeC) return SDL_SCANCODE_C;
+        if (keyCode == GCKeyCodeD) return SDL_SCANCODE_D;
+        if (keyCode == GCKeyCodeE) return SDL_SCANCODE_E;
+        if (keyCode == GCKeyCodeF) return SDL_SCANCODE_F;
+        if (keyCode == GCKeyCodeG) return SDL_SCANCODE_G;
+        if (keyCode == GCKeyCodeH) return SDL_SCANCODE_H;
+        if (keyCode == GCKeyCodeI) return SDL_SCANCODE_I;
+        if (keyCode == GCKeyCodeJ) return SDL_SCANCODE_J;
+        if (keyCode == GCKeyCodeK) return SDL_SCANCODE_K;
+        if (keyCode == GCKeyCodeL) return SDL_SCANCODE_L;
+        if (keyCode == GCKeyCodeM) return SDL_SCANCODE_M;
+        if (keyCode == GCKeyCodeN) return SDL_SCANCODE_N;
+        if (keyCode == GCKeyCodeO) return SDL_SCANCODE_O;
+        if (keyCode == GCKeyCodeP) return SDL_SCANCODE_P;
+        if (keyCode == GCKeyCodeQ) return SDL_SCANCODE_Q;
+        if (keyCode == GCKeyCodeR) return SDL_SCANCODE_R;
+        if (keyCode == GCKeyCodeS) return SDL_SCANCODE_S;
+        if (keyCode == GCKeyCodeT) return SDL_SCANCODE_T;
+        if (keyCode == GCKeyCodeU) return SDL_SCANCODE_U;
+        if (keyCode == GCKeyCodeV) return SDL_SCANCODE_V;
+        if (keyCode == GCKeyCodeW) return SDL_SCANCODE_W;
+        if (keyCode == GCKeyCodeX) return SDL_SCANCODE_X;
+        if (keyCode == GCKeyCodeY) return SDL_SCANCODE_Y;
+        if (keyCode == GCKeyCodeZ) return SDL_SCANCODE_Z;
+
+        // numbers
+        if (keyCode == GCKeyCode0) return SDL_SCANCODE_0;
+        if (keyCode == GCKeyCode1) return SDL_SCANCODE_1;
+        if (keyCode == GCKeyCode2) return SDL_SCANCODE_2;
+        if (keyCode == GCKeyCode3) return SDL_SCANCODE_3;
+        if (keyCode == GCKeyCode4) return SDL_SCANCODE_4;
+        if (keyCode == GCKeyCode5) return SDL_SCANCODE_5;
+        if (keyCode == GCKeyCode6) return SDL_SCANCODE_6;
+        if (keyCode == GCKeyCode7) return SDL_SCANCODE_7;
+        if (keyCode == GCKeyCode8) return SDL_SCANCODE_8;
+        if (keyCode == GCKeyCode9) return SDL_SCANCODE_9;
+
+        // function keys
+        if (keyCode == GCKeyCodeF1)  return SDL_SCANCODE_F1;
+        if (keyCode == GCKeyCodeF2)  return SDL_SCANCODE_F2;
+        if (keyCode == GCKeyCodeF3)  return SDL_SCANCODE_F3;
+        if (keyCode == GCKeyCodeF4)  return SDL_SCANCODE_F4;
+        if (keyCode == GCKeyCodeF5)  return SDL_SCANCODE_F5;
+        if (keyCode == GCKeyCodeF6)  return SDL_SCANCODE_F6;
+        if (keyCode == GCKeyCodeF7)  return SDL_SCANCODE_F7;
+        if (keyCode == GCKeyCodeF8)  return SDL_SCANCODE_F8;
+        if (keyCode == GCKeyCodeF9)  return SDL_SCANCODE_F9;
+        if (keyCode == GCKeyCodeF10) return SDL_SCANCODE_F10;
+        if (keyCode == GCKeyCodeF11) return SDL_SCANCODE_F11;
+        if (keyCode == GCKeyCodeF12) return SDL_SCANCODE_F12;
+    }
     return SDL_SCANCODE_UNKNOWN;
 }
 
