@@ -125,8 +125,7 @@ namespace celestemeow
             if (code == (nint)GCKeyCode.RightControl)       return SDL.SDL_Scancode.SDL_SCANCODE_RCTRL;
 			if (code == (nint)GCKeyCode.LeftAlt)            return SDL.SDL_Scancode.SDL_SCANCODE_LALT;
 			if (code == (nint)GCKeyCode.RightAlt)           return SDL.SDL_Scancode.SDL_SCANCODE_RALT;
-            if (code == (nint)GCKeyCode.LeftCommand)        return SDL.SDL_Scancode.SDL_SCANCODE_LGUI;
-            if (code == (nint)GCKeyCode.RightCommand)       return SDL.SDL_Scancode.SDL_SCANCODE_RGUI;
+			// Command (GUI) keys not available in current GCKeyCode bindings
 
 			// letters (HID usage 0x04-0x1D => A-Z)
 			if (code >= (nint)0x04 && code <= (nint)0x1D)
