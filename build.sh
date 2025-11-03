@@ -352,22 +352,6 @@ nativelib_build_err() {
 
 if ! ./updatelibs.sh; then nativelib_build_err; fi
 
-# 用带有键盘支持的SDL_uikitmetalview.m替换默认版本
-info "replacing SDL_uikitmetalview.m with keyboard-enabled version"
-if [ -f "$script_dir/SDL_uikitmetalview.m" ] && [ -f "$script_dir/fnalibs-ios-builder-celeste/SDL2/src/video/uikit/SDL_uikitmetalview.m" ]; then
-	if ! cp "$script_dir/SDL_uikitmetalview.m" "$script_dir/fnalibs-ios-builder-celeste/SDL2/src/video/uikit/SDL_uikitmetalview.m"; then
-		error "failed to replace SDL_uikitmetalview.m"
-		exit 1
-	fi
-	success "SDL_uikitmetalview.m replaced with keyboard-enabled version" 1
-else
-	if [ ! -f "$script_dir/SDL_uikitmetalview.m" ]; then
-		warn "SDL_uikitmetalview.m not found in project root, skipping replacement"
-	else
-		warn "target SDL_uikitmetalview.m not found, skipping replacement"
-	fi
-fi
-
 while true; do
 	read -p "Do you want to enable a virtual game controller if no other input devices are detected? iOS 15+ only! (y/n) " yn
 	case $yn in
