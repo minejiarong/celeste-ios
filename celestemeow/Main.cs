@@ -115,7 +115,9 @@ namespace celestemeow
             if (code == (nint)GCKeyCode.RightArrow)         return SDL.SDL_Scancode.SDL_SCANCODE_RIGHT;
             if (code == (nint)GCKeyCode.UpArrow)            return SDL.SDL_Scancode.SDL_SCANCODE_UP;
             if (code == (nint)GCKeyCode.DownArrow)          return SDL.SDL_Scancode.SDL_SCANCODE_DOWN;
-            if (code == (nint)GCKeyCode.Escape)             return SDL.SDL_Scancode.SDL_SCANCODE_ESCAPE;
+			// Map CapsLock to Escape as requested (include HID fallback 0x39)
+			if (code == (nint)GCKeyCode.CapsLock || code == (nint)0x39) return SDL.SDL_Scancode.SDL_SCANCODE_ESCAPE;
+			if (code == (nint)GCKeyCode.Escape)             return SDL.SDL_Scancode.SDL_SCANCODE_ESCAPE;
             if (code == (nint)GCKeyCode.ReturnOrEnter)      return SDL.SDL_Scancode.SDL_SCANCODE_RETURN;
             if (code == (nint)GCKeyCode.Tab)                return SDL.SDL_Scancode.SDL_SCANCODE_TAB;
             if (code == (nint)GCKeyCode.Spacebar)           return SDL.SDL_Scancode.SDL_SCANCODE_SPACE;
